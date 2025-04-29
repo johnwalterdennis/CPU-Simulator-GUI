@@ -7,339 +7,333 @@ using System.Windows.Forms;
 
 namespace CpuSchedulingWinForms
 {
+    public struct Metrics
+    {
+        public double AWT;
+        public double ATT;
+        public double Util;
+        public double Throughput;
+    }
+
     public static class Algorithms
     {
+        //--------------------------------------------------------------------
+        //  Generic helpers
+        //--------------------------------------------------------------------
+        private static int PromptInt(string caption, string title)
+        {
+            while (true)
+            {
+                string raw = Microsoft.VisualBasic.Interaction.InputBox(caption, title, "", -1, -1).Trim();
+                if (int.TryParse(raw, out int v) && v >= 0) return v;
+                MessageBox.Show("Please enter a valid non‑negative integer.", "Invalid input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private static double PromptDouble(string caption, string title)
+        {
+            while (true)
+            {
+                string raw = Microsoft.VisualBasic.Interaction.InputBox(caption, title, "", -1, -1).Trim();
+                if (double.TryParse(raw, out double v) && v >= 0) return v;
+                MessageBox.Show("Please enter a valid non‑negative number.", "Invalid input", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private static Metrics ComputeMetrics(double[] arrival, double[] burst, double[] waiting, double scheduleEnd)
+        {
+            int n = burst.Length;
+            double busy = burst.Sum();
+            double span = scheduleEnd - arrival.Min();
+            if (span <= 0) span = 1;    // guard
+            Metrics m;
+            m.AWT = waiting.Average();
+            m.ATT = waiting.Zip(burst, (w, b) => w + b).Average();
+            m.Util = (busy / span) * 100.0;
+            m.Throughput = n / span;
+            return m;
+        }
+
+        private static void ShowMetrics(Metrics m, string caption)
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine($"Average Waiting Time   : {m.AWT:F2} sec");
+            sb.AppendLine($"Average Turnaround Time: {m.ATT:F2} sec");
+            sb.AppendLine($"CPU Utilisation        : {m.Util:F1} %");
+            sb.AppendLine($"Throughput             : {m.Throughput:F3} proc/sec");
+            MessageBox.Show(sb.ToString(), caption, MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        //--------------------------------------------------------------------
+        //  FCFS
+        //--------------------------------------------------------------------
         public static void fcfsAlgorithm(string userInput)
         {
-            int np = Convert.ToInt16(userInput);
-            int npX2 = np * 2;
-
-            double[] bp = new double[np];
-            double[] wtp = new double[np];
-            string[] output1 = new string[npX2];
-            double twt = 0.0, awt; 
-            int num;
-
-            DialogResult result = MessageBox.Show("First Come First Serve Scheduling ", "", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-
-            if (result == DialogResult.Yes)
+            if (!int.TryParse(userInput.Trim(), out int n) || n <= 0)
             {
-                for (num = 0; num <= np - 1; num++)
-                {
-                    //MessageBox.Show("Enter Burst time for P" + (num + 1) + ":", "Burst time for Process", MessageBoxButtons.OK, MessageBoxIcon.Question);
-                    //Console.WriteLine("\nEnter Burst time for P" + (num + 1) + ":");
-
-                    string input =
-                    Microsoft.VisualBasic.Interaction.InputBox("Enter Burst time: ",
-                                                       "Burst time for P" + (num + 1),
-                                                       "",
-                                                       -1, -1);
-
-                    bp[num] = Convert.ToInt64(input);
-
-                    //var input = Console.ReadLine();
-                    //bp[num] = Convert.ToInt32(input);
-                }
-
-                for (num = 0; num <= np - 1; num++)
-                {
-                    if (num == 0)
-                    {
-                        wtp[num] = 0;
-                    }
-                    else
-                    {
-                        wtp[num] = wtp[num - 1] + bp[num - 1];
-                        MessageBox.Show("Waiting time for P" + (num + 1) + " = " + wtp[num], "Job Queue", MessageBoxButtons.OK, MessageBoxIcon.None);
-                    }
-                }
-                for (num = 0; num <= np - 1; num++)
-                {
-                    twt = twt + wtp[num];
-                }
-                awt = twt / np;
-                MessageBox.Show("Average waiting time for " + np + " processes" + " = " + awt + " sec(s)", "Average Awaiting Time", MessageBoxButtons.OK, MessageBoxIcon.None);
+                MessageBox.Show("Invalid number of processes.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            else if (result == DialogResult.No)
+
+            double[] burst = new double[n];
+            double[] waiting = new double[n];
+            double[] arrival = new double[n];
+            for (int i = 0; i < n; i++) arrival[i] = 0; // FCFS example assumes simultaneous arrival
+
+            DialogResult res = MessageBox.Show("First‑Come‑First‑Serve Scheduling", "", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (res != DialogResult.Yes) return;
+
+            for (int i = 0; i < n; i++)
+                burst[i] = PromptDouble("Enter Burst time:", $"Burst time for P{i + 1}");
+
+            waiting[0] = 0;
+            for (int i = 1; i < n; i++)
             {
-                //this.Hide();
-                //Form1 frm = new Form1();
-                //frm.ShowDialog();
+                waiting[i] = waiting[i - 1] + burst[i - 1];
+                MessageBox.Show($"Waiting time for P{i + 1} = {waiting[i]}", "Waiting time", MessageBoxButtons.OK);
             }
+
+            double scheduleEnd = burst.Sum();
+            Metrics m = ComputeMetrics(arrival, burst, waiting, scheduleEnd);
+            ShowMetrics(m, "FCFS Metrics");
         }
 
+        //--------------------------------------------------------------------
+        //  SJF (non‑pre‑emptive)
+        //--------------------------------------------------------------------
         public static void sjfAlgorithm(string userInput)
         {
-            int np = Convert.ToInt16(userInput);
-
-            double[] bp = new double[np];
-            double[] wtp = new double[np];
-            double[] p = new double[np];
-            double twt = 0.0, awt; 
-            int x, num;
-            double temp = 0.0;
-            bool found = false;
-
-            DialogResult result = MessageBox.Show("Shortest Job First Scheduling", "", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-
-            if (result == DialogResult.Yes)
+            if (!int.TryParse(userInput.Trim(), out int n) || n <= 0)
             {
-                for (num = 0; num <= np - 1; num++)
-                {
-                    string input =
-                        Microsoft.VisualBasic.Interaction.InputBox("Enter burst time: ",
-                                                           "Burst time for P" + (num + 1),
-                                                           "",
-                                                           -1, -1);
-
-                    bp[num] = Convert.ToInt64(input);
-                }
-                for (num = 0; num <= np - 1; num++)
-                {
-                    p[num] = bp[num];
-                }
-                for (x = 0; x <= np - 2; x++)
-                {
-                    for (num = 0; num <= np - 2; num++)
-                    {
-                        if (p[num] > p[num + 1])
-                        {
-                            temp = p[num];
-                            p[num] = p[num + 1];
-                            p[num + 1] = temp;
-                        }
-                    }
-                }
-                for (num = 0; num <= np - 1; num++)
-                {
-                    if (num == 0)
-                    {
-                        for (x = 0; x <= np - 1; x++)
-                        {
-                            if (p[num] == bp[x] && found == false)
-                            {
-                                wtp[num] = 0;
-                                MessageBox.Show("Waiting time for P" + (x + 1) + " = " + wtp[num], "Waiting time:", MessageBoxButtons.OK, MessageBoxIcon.None);
-                                //Console.WriteLine("\nWaiting time for P" + (x + 1) + " = " + wtp[num]);
-                                bp[x] = 0;
-                                found = true;
-                            }
-                        }
-                        found = false;
-                    }
-                    else
-                    {
-                        for (x = 0; x <= np - 1; x++)
-                        {
-                            if (p[num] == bp[x] && found == false)
-                            {
-                                wtp[num] = wtp[num - 1] + p[num - 1];
-                                MessageBox.Show("Waiting time for P" + (x + 1) + " = " + wtp[num], "Waiting time", MessageBoxButtons.OK, MessageBoxIcon.None);
-                                //Console.WriteLine("\nWaiting time for P" + (x + 1) + " = " + wtp[num]);
-                                bp[x] = 0;
-                                found = true;
-                            }
-                        }
-                        found = false;
-                    }
-                }
-                for (num = 0; num <= np - 1; num++)
-                {
-                    twt = twt + wtp[num];
-                }
-                MessageBox.Show("Average waiting time for " + np + " processes" + " = " + (awt = twt / np) + " sec(s)", "Average waiting time", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Invalid number of processes.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
+
+            double[] burst = new double[n];
+            double[] waiting = new double[n];
+            double[] arrival = new double[n];
+            for (int i = 0; i < n; i++) arrival[i] = 0;
+
+            DialogResult res = MessageBox.Show("Shortest Job First Scheduling", "", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (res != DialogResult.Yes) return;
+
+            for (int i = 0; i < n; i++)
+                burst[i] = PromptDouble("Enter Burst time:", $"Burst time for P{i + 1}");
+
+            // sort by burst while keeping index map
+            int[] idx = Enumerable.Range(0, n).ToArray();
+            Array.Sort(idx, (a, b) => burst[a].CompareTo(burst[b]));
+
+            double elapsed = 0;
+            foreach (int p in idx)
+            {
+                waiting[p] = elapsed;
+                elapsed += burst[p];
+                MessageBox.Show($"Waiting time for P{p + 1} = {waiting[p]}", "Waiting time", MessageBoxButtons.OK);
+            }
+            Metrics m = ComputeMetrics(arrival, burst, waiting, elapsed);
+            ShowMetrics(m, "SJF Metrics");
         }
 
+        //--------------------------------------------------------------------
+        //  Priority (non‑pre‑emptive, lower value → higher priority)
+        //--------------------------------------------------------------------
         public static void priorityAlgorithm(string userInput)
         {
-            int np = Convert.ToInt16(userInput);
-
-            DialogResult result = MessageBox.Show("Priority Scheduling ", "", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-
-            if (result == DialogResult.Yes)
+            if (!int.TryParse(userInput.Trim(), out int n) || n <= 0)
             {
-                double[] bp = new double[np];
-                double[] wtp = new double[np + 1];
-                int[] p = new int[np];
-                int[] sp = new int[np];
-                int x, num;
-                double twt = 0.0;
-                double awt;
-                int temp = 0;
-                bool found = false;
-                for (num = 0; num <= np - 1; num++)
-                {
-                    string input =
-                        Microsoft.VisualBasic.Interaction.InputBox("Enter burst time: ",
-                                                           "Burst time for P" + (num + 1),
-                                                           "",
-                                                           -1, -1);
-
-                    bp[num] = Convert.ToInt64(input);
-                }
-                for (num = 0; num <= np - 1; num++)
-                {
-                    string input2 =
-                        Microsoft.VisualBasic.Interaction.InputBox("Enter priority: ",
-                                                           "Priority for P" + (num + 1),
-                                                           "",
-                                                           -1, -1);
-
-                    p[num] = Convert.ToInt16(input2);
-                }
-                for (num = 0; num <= np - 1; num++)
-                {
-                    sp[num] = p[num];
-                }
-                for (x = 0; x <= np - 2; x++)
-                {
-                    for (num = 0; num <= np - 2; num++)
-                    {
-                        if (sp[num] > sp[num + 1])
-                        {
-                            temp = sp[num];
-                            sp[num] = sp[num + 1];
-                            sp[num + 1] = temp;
-                        }
-                    }
-                }
-                for (num = 0; num <= np - 1; num++)
-                {
-                    if (num == 0)
-                    {
-                        for (x = 0; x <= np - 1; x++)
-                        {
-                            if (sp[num] == p[x] && found == false)
-                            {
-                                wtp[num] = 0;
-                                MessageBox.Show("Waiting time for P" + (x + 1) + " = " + wtp[num], "Waiting time", MessageBoxButtons.OK);
-                                //Console.WriteLine("\nWaiting time for P" + (x + 1) + " = " + wtp[num]);
-                                temp = x;
-                                p[x] = 0;
-                                found = true;
-                            }
-                        }
-                        found = false;
-                    }
-                    else
-                    {
-                        for (x = 0; x <= np - 1; x++)
-                        {
-                            if (sp[num] == p[x] && found == false)
-                            {
-                                wtp[num] = wtp[num - 1] + bp[temp];
-                                MessageBox.Show("Waiting time for P" + (x + 1) + " = " + wtp[num], "Waiting time", MessageBoxButtons.OK);
-                                //Console.WriteLine("\nWaiting time for P" + (x + 1) + " = " + wtp[num]);
-                                temp = x;
-                                p[x] = 0;
-                                found = true;
-                            }
-                        }
-                        found = false;
-                    }
-                }
-                for (num = 0; num <= np - 1; num++)
-                {
-                    twt = twt + wtp[num];
-                }
-                MessageBox.Show("Average waiting time for " + np + " processes" + " = " + (awt = twt / np) + " sec(s)", "Average waiting time", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //Console.WriteLine("\n\nAverage waiting time: " + (awt = twt / np));
-                //Console.ReadLine();
+                MessageBox.Show("Invalid number of processes.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            else
+
+            double[] burst = new double[n];
+            double[] waiting = new double[n];
+            int[] priority = new int[n];
+            double[] arrival = new double[n];
+            for (int i = 0; i < n; i++) arrival[i] = 0;
+
+            DialogResult res = MessageBox.Show("Priority Scheduling", "", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (res != DialogResult.Yes) return;
+
+            for (int i = 0; i < n; i++)
             {
-                //this.Hide();
+                burst[i] = PromptDouble("Enter Burst time:", $"Burst time for P{i + 1}");
+                priority[i] = PromptInt("Enter Priority:", $"Priority for P{i + 1}");
             }
+
+            int[] idx = Enumerable.Range(0, n).ToArray();
+            Array.Sort(idx, (a, b) => priority[a].CompareTo(priority[b]));
+
+            double elapsed = 0;
+            foreach (int p in idx)
+            {
+                waiting[p] = elapsed;
+                elapsed += burst[p];
+                MessageBox.Show($"Waiting time for P{p + 1} = {waiting[p]}", "Waiting time", MessageBoxButtons.OK);
+            }
+            Metrics m = ComputeMetrics(arrival, burst, waiting, elapsed);
+            ShowMetrics(m, "Priority Metrics");
         }
 
+        //--------------------------------------------------------------------
+        //  Round Robin (time‑quantum from Helper.QuantumTime)
+        //--------------------------------------------------------------------
         public static void roundRobinAlgorithm(string userInput)
         {
-            int np = Convert.ToInt16(userInput);
-            int i, counter = 0;
-            double total = 0.0;
-            double timeQuantum;
-            double waitTime = 0, turnaroundTime = 0;
-            double averageWaitTime, averageTurnaroundTime;
-            double[] arrivalTime = new double[10];
-            double[] burstTime = new double[10];
-            double[] temp = new double[10];
-            int x = np;
-
-            DialogResult result = MessageBox.Show("Round Robin Scheduling", "", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-
-            if (result == DialogResult.Yes)
+            if (!int.TryParse(userInput.Trim(), out int n) || n <= 0)
             {
-                for (i = 0; i < np; i++)
-                {
-                    string arrivalInput =
-                            Microsoft.VisualBasic.Interaction.InputBox("Enter arrival time: ",
-                                                               "Arrival time for P" + (i + 1),
-                                                               "",
-                                                               -1, -1);
-
-                    arrivalTime[i] = Convert.ToInt64(arrivalInput);
-
-                    string burstInput =
-                            Microsoft.VisualBasic.Interaction.InputBox("Enter burst time: ",
-                                                               "Burst time for P" + (i + 1),
-                                                               "",
-                                                               -1, -1);
-
-                    burstTime[i] = Convert.ToInt64(burstInput);
-
-                    temp[i] = burstTime[i];
-                }
-                string timeQuantumInput =
-                            Microsoft.VisualBasic.Interaction.InputBox("Enter time quantum: ", "Time Quantum",
-                                                               "",
-                                                               -1, -1);
-
-                timeQuantum = Convert.ToInt64(timeQuantumInput);
-                Helper.QuantumTime = timeQuantumInput;
-
-                for (total = 0, i = 0; x != 0;)
-                {
-                    if (temp[i] <= timeQuantum && temp[i] > 0)
-                    {
-                        total = total + temp[i];
-                        temp[i] = 0;
-                        counter = 1;
-                    }
-                    else if (temp[i] > 0)
-                    {
-                        temp[i] = temp[i] - timeQuantum;
-                        total = total + timeQuantum;
-                    }
-                    if (temp[i] == 0 && counter == 1)
-                    {
-                        x--;
-                        //printf("nProcess[%d]tt%dtt %dttt %d", i + 1, burst_time[i], total - arrival_time[i], total - arrival_time[i] - burst_time[i]);
-                        MessageBox.Show("Turnaround time for Process " + (i + 1) + " : " + (total - arrivalTime[i]), "Turnaround time for Process " + (i + 1), MessageBoxButtons.OK);
-                        MessageBox.Show("Wait time for Process " + (i + 1) + " : " + (total - arrivalTime[i] - burstTime[i]), "Wait time for Process " + (i + 1), MessageBoxButtons.OK);
-                        turnaroundTime = (turnaroundTime + total - arrivalTime[i]);
-                        waitTime = (waitTime + total - arrivalTime[i] - burstTime[i]);                        
-                        counter = 0;
-                    }
-                    if (i == np - 1)
-                    {
-                        i = 0;
-                    }
-                    else if (arrivalTime[i + 1] <= total)
-                    {
-                        i++;
-                    }
-                    else
-                    {
-                        i = 0;
-                    }
-                }
-                averageWaitTime = Convert.ToInt64(waitTime * 1.0 / np);
-                averageTurnaroundTime = Convert.ToInt64(turnaroundTime * 1.0 / np);
-                MessageBox.Show("Average wait time for " + np + " processes: " + averageWaitTime + " sec(s)", "", MessageBoxButtons.OK);
-                MessageBox.Show("Average turnaround time for " + np + " processes: " + averageTurnaroundTime + " sec(s)", "", MessageBoxButtons.OK);
+                MessageBox.Show("Invalid number of processes.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
+
+            double[] arrival = new double[n];
+            double[] burst = new double[n];
+            double[] remaining = new double[n];
+            double[] waiting = new double[n];
+
+            DialogResult res = MessageBox.Show("Round Robin Scheduling", "", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (res != DialogResult.Yes) return;
+
+            for (int i = 0; i < n; i++)
+            {
+                arrival[i] = PromptDouble("Enter Arrival time:", $"Arrival time for P{i + 1}");
+                burst[i] = PromptDouble("Enter Burst time:", $"Burst time for P{i + 1}");
+                remaining[i] = burst[i];
+            }
+            double quantum = PromptDouble("Enter Time Quantum:", "Time Quantum");
+            Helper.QuantumTime = quantum.ToString();
+
+            double time = arrival.Min();
+            int complete = 0;
+            while (complete < n)
+            {
+                bool didWork = false;
+                for (int i = 0; i < n; i++)
+                {
+                    if (remaining[i] > 0 && arrival[i] <= time)
+                    {
+                        double slice = Math.Min(quantum, remaining[i]);
+                        remaining[i] -= slice;
+                        time += slice;
+                        didWork = true;
+                        if (remaining[i] == 0)
+                        {
+                            waiting[i] = time - arrival[i] - burst[i];
+                            MessageBox.Show($"Waiting time for P{i + 1} = {waiting[i]}", "Waiting time", MessageBoxButtons.OK);
+                            complete++;
+                        }
+                    }
+                }
+                if (!didWork) time++; // idle gap
+            }
+            Metrics m = ComputeMetrics(arrival, burst, waiting, time);
+            ShowMetrics(m, "Round Robin Metrics");
+        }
+
+        //--------------------------------------------------------------------
+        //  SRTF (pre‑emptive SJF)
+        //--------------------------------------------------------------------
+        public static void srtfAlgorithm(string userInput)
+        {
+            if (!int.TryParse(userInput.Trim(), out int n) || n <= 0)
+            {
+                MessageBox.Show("Invalid number of processes.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            double[] arrival = new double[n];
+            double[] burst = new double[n];
+            double[] remaining = new double[n];
+            double[] waiting = new double[n];
+
+            DialogResult res = MessageBox.Show("Shortest Remaining Time First (Pre‑emptive)", "", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (res != DialogResult.Yes) return;
+
+            for (int i = 0; i < n; i++)
+            {
+                arrival[i] = PromptDouble("Enter Arrival time:", $"Arrival time for P{i + 1}");
+                burst[i] = PromptDouble("Enter Burst time:", $"Burst time for P{i + 1}");
+                remaining[i] = burst[i];
+            }
+
+            double time = arrival.Min();
+            int finished = 0;
+            while (finished < n)
+            {
+                int idx = -1;
+                double minRem = double.MaxValue;
+                for (int i = 0; i < n; i++)
+                    if (arrival[i] <= time && remaining[i] > 0 && remaining[i] < minRem)
+                    { idx = i; minRem = remaining[i]; }
+
+                if (idx == -1) { time++; continue; }
+
+                remaining[idx] -= 1;  // one‑unit quantum
+                time += 1;
+                if (remaining[idx] == 0)
+                {
+                    waiting[idx] = time - arrival[idx] - burst[idx];
+                    MessageBox.Show($"Waiting time for P{idx + 1} = {waiting[idx]}", "Waiting time", MessageBoxButtons.OK);
+                    finished++;
+                }
+            }
+            Metrics m = ComputeMetrics(arrival, burst, waiting, time);
+            ShowMetrics(m, "SRTF Metrics");
+        }
+
+        //--------------------------------------------------------------------
+        //  HRRN (Highest Response‑Ratio Next)
+        //--------------------------------------------------------------------
+        public static void hrrnAlgorithm(string userInput)
+        {
+            if (!int.TryParse(userInput.Trim(), out int n) || n <= 0)
+            {
+                MessageBox.Show("Invalid number of processes.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            double[] arrival = new double[n];
+            double[] burst = new double[n];
+            double[] waiting = new double[n];
+            bool[] done = new bool[n];
+
+            DialogResult res = MessageBox.Show("Highest Response‑Ratio Next", "", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (res != DialogResult.Yes) return;
+
+            for (int i = 0; i < n; i++)
+            {
+                arrival[i] = PromptDouble("Enter Arrival time:", $"Arrival time for P{i + 1}");
+                burst[i] = PromptDouble("Enter Burst time:", $"Burst time for P{i + 1}");
+            }
+
+            double time = arrival.Min();
+            int completed = 0;
+            while (completed < n)
+            {
+                List<int> ready = new List<int>();
+                for (int i = 0; i < n; i++)
+                    if (!done[i] && arrival[i] <= time) ready.Add(i);
+
+                if (ready.Count == 0)
+                {
+                    time = arrival.Where((a, idx) => !done[idx]).Min();
+                    continue;
+                }
+
+                double bestRatio = -1; int chosen = ready[0];
+                foreach (int i in ready)
+                {
+                    double ratio = (time - arrival[i] + burst[i]) / burst[i];
+                    if (ratio > bestRatio) { bestRatio = ratio; chosen = i; }
+                }
+
+                waiting[chosen] = time - arrival[chosen];
+                MessageBox.Show($"Waiting time for P{chosen + 1} = {waiting[chosen]}", "Waiting time", MessageBoxButtons.OK);
+                time += burst[chosen];
+                done[chosen] = true;
+                completed++;
+            }
+            Metrics m = ComputeMetrics(arrival, burst, waiting, time);
+            ShowMetrics(m, "HRRN Metrics");
         }
     }
 }
-

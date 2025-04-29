@@ -63,6 +63,8 @@
             this.pictureBoxCodeOutput = new System.Windows.Forms.PictureBox();
             this.btnBarcode = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.btnSRTF = new System.Windows.Forms.Button();
+            this.btnHRRN = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabSelection.SuspendLayout();
@@ -86,16 +88,18 @@
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.btnDashBoard);
             this.panel1.Location = new System.Drawing.Point(1, 1);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(164, 439);
+            this.panel1.Size = new System.Drawing.Size(218, 540);
             this.panel1.TabIndex = 0;
             // 
             // sidePanel
             // 
             this.sidePanel.BackColor = System.Drawing.Color.SeaGreen;
-            this.sidePanel.Location = new System.Drawing.Point(0, 161);
+            this.sidePanel.Location = new System.Drawing.Point(0, 198);
+            this.sidePanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.sidePanel.Name = "sidePanel";
-            this.sidePanel.Size = new System.Drawing.Size(10, 45);
+            this.sidePanel.Size = new System.Drawing.Size(13, 55);
             this.sidePanel.TabIndex = 4;
             // 
             // btnProductCode
@@ -107,9 +111,10 @@
             this.btnProductCode.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnProductCode.Image = ((System.Drawing.Image)(resources.GetObject("btnProductCode.Image")));
             this.btnProductCode.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnProductCode.Location = new System.Drawing.Point(11, 258);
+            this.btnProductCode.Location = new System.Drawing.Point(15, 318);
+            this.btnProductCode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnProductCode.Name = "btnProductCode";
-            this.btnProductCode.Size = new System.Drawing.Size(150, 40);
+            this.btnProductCode.Size = new System.Drawing.Size(200, 49);
             this.btnProductCode.TabIndex = 4;
             this.btnProductCode.Text = "    Code Generator";
             this.btnProductCode.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -120,9 +125,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 382);
+            this.label1.Location = new System.Drawing.Point(4, 470);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(125, 52);
+            this.label1.Size = new System.Drawing.Size(167, 76);
             this.label1.TabIndex = 3;
             this.label1.Text = "© 2024.\r\nAll Rights Reserved.\r\n\r\nCredits to Francis Nweke.\r\n";
             // 
@@ -135,9 +141,10 @@
             this.btnCpuScheduler.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCpuScheduler.Image = ((System.Drawing.Image)(resources.GetObject("btnCpuScheduler.Image")));
             this.btnCpuScheduler.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCpuScheduler.Location = new System.Drawing.Point(11, 212);
+            this.btnCpuScheduler.Location = new System.Drawing.Point(15, 261);
+            this.btnCpuScheduler.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnCpuScheduler.Name = "btnCpuScheduler";
-            this.btnCpuScheduler.Size = new System.Drawing.Size(150, 40);
+            this.btnCpuScheduler.Size = new System.Drawing.Size(200, 49);
             this.btnCpuScheduler.TabIndex = 2;
             this.btnCpuScheduler.Text = "    CPU Scheduler";
             this.btnCpuScheduler.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -151,8 +158,9 @@
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pictureBox1.Cursor = System.Windows.Forms.Cursors.No;
             this.pictureBox1.Location = new System.Drawing.Point(0, -1);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(164, 129);
+            this.pictureBox1.Size = new System.Drawing.Size(219, 159);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -167,9 +175,10 @@
             this.btnDashBoard.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDashBoard.Image = ((System.Drawing.Image)(resources.GetObject("btnDashBoard.Image")));
             this.btnDashBoard.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDashBoard.Location = new System.Drawing.Point(11, 161);
+            this.btnDashBoard.Location = new System.Drawing.Point(15, 198);
+            this.btnDashBoard.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnDashBoard.Name = "btnDashBoard";
-            this.btnDashBoard.Size = new System.Drawing.Size(150, 45);
+            this.btnDashBoard.Size = new System.Drawing.Size(200, 55);
             this.btnDashBoard.TabIndex = 1;
             this.btnDashBoard.Text = "    Dashboard";
             this.btnDashBoard.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -182,10 +191,11 @@
             this.tabSelection.Controls.Add(this.cpuSchedulerTab);
             this.tabSelection.Controls.Add(this.productTab);
             this.tabSelection.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabSelection.Location = new System.Drawing.Point(171, 1);
+            this.tabSelection.Location = new System.Drawing.Point(228, 1);
+            this.tabSelection.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabSelection.Name = "tabSelection";
             this.tabSelection.SelectedIndex = 0;
-            this.tabSelection.Size = new System.Drawing.Size(509, 439);
+            this.tabSelection.Size = new System.Drawing.Size(679, 540);
             this.tabSelection.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabSelection.TabIndex = 1;
             // 
@@ -202,10 +212,11 @@
             this.dashBoardTab.Controls.Add(this.pictureBox4);
             this.dashBoardTab.Controls.Add(this.pictureBox2);
             this.dashBoardTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dashBoardTab.Location = new System.Drawing.Point(4, 22);
+            this.dashBoardTab.Location = new System.Drawing.Point(4, 28);
+            this.dashBoardTab.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dashBoardTab.Name = "dashBoardTab";
-            this.dashBoardTab.Padding = new System.Windows.Forms.Padding(3);
-            this.dashBoardTab.Size = new System.Drawing.Size(501, 413);
+            this.dashBoardTab.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dashBoardTab.Size = new System.Drawing.Size(671, 508);
             this.dashBoardTab.TabIndex = 0;
             this.dashBoardTab.Text = "Dashboard";
             // 
@@ -215,43 +226,48 @@
             this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listView1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(75, 64);
+            this.listView1.Location = new System.Drawing.Point(100, 79);
+            this.listView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(347, 143);
+            this.listView1.Size = new System.Drawing.Size(463, 176);
             this.listView1.TabIndex = 10;
             this.listView1.UseCompatibleStateImageBehavior = false;
             // 
             // progressBar2
             // 
-            this.progressBar2.Location = new System.Drawing.Point(127, 261);
+            this.progressBar2.Location = new System.Drawing.Point(169, 321);
+            this.progressBar2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.progressBar2.Name = "progressBar2";
-            this.progressBar2.Size = new System.Drawing.Size(295, 15);
+            this.progressBar2.Size = new System.Drawing.Size(393, 18);
             this.progressBar2.TabIndex = 9;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(10, 262);
+            this.label3.Location = new System.Drawing.Point(13, 322);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(94, 15);
+            this.label3.Size = new System.Drawing.Size(120, 20);
             this.label3.TabIndex = 8;
             this.label3.Text = "Memory Usage:";
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(127, 223);
+            this.progressBar1.Location = new System.Drawing.Point(169, 274);
+            this.progressBar1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(295, 15);
+            this.progressBar1.Size = new System.Drawing.Size(393, 18);
             this.progressBar1.TabIndex = 7;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(7, 223);
+            this.label2.Location = new System.Drawing.Point(9, 274);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(100, 15);
+            this.label2.Size = new System.Drawing.Size(124, 20);
             this.label2.TabIndex = 6;
             this.label2.Text = "CPU Utilization:";
             // 
@@ -265,9 +281,10 @@
             this.btnExit.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.Image = ((System.Drawing.Image)(resources.GetObject("btnExit.Image")));
             this.btnExit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExit.Location = new System.Drawing.Point(417, 6);
+            this.btnExit.Location = new System.Drawing.Point(556, 7);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(77, 29);
+            this.btnExit.Size = new System.Drawing.Size(103, 36);
             this.btnExit.TabIndex = 5;
             this.btnExit.Text = " Close";
             this.btnExit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -279,9 +296,10 @@
             this.pictureBox3.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.pictureBox3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.BackgroundImage")));
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox3.Location = new System.Drawing.Point(245, 293);
+            this.pictureBox3.Location = new System.Drawing.Point(327, 361);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(256, 120);
+            this.pictureBox3.Size = new System.Drawing.Size(341, 148);
             this.pictureBox3.TabIndex = 3;
             this.pictureBox3.TabStop = false;
             // 
@@ -291,8 +309,9 @@
             this.pictureBox4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox4.BackgroundImage")));
             this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pictureBox4.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(501, 296);
+            this.pictureBox4.Size = new System.Drawing.Size(668, 364);
             this.pictureBox4.TabIndex = 2;
             this.pictureBox4.TabStop = false;
             this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
@@ -302,9 +321,10 @@
             this.pictureBox2.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox2.Location = new System.Drawing.Point(0, 293);
+            this.pictureBox2.Location = new System.Drawing.Point(0, 361);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(248, 120);
+            this.pictureBox2.Size = new System.Drawing.Size(331, 148);
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
             // 
@@ -313,6 +333,8 @@
             this.cpuSchedulerTab.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.cpuSchedulerTab.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("cpuSchedulerTab.BackgroundImage")));
             this.cpuSchedulerTab.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.cpuSchedulerTab.Controls.Add(this.btnHRRN);
+            this.cpuSchedulerTab.Controls.Add(this.btnSRTF);
             this.cpuSchedulerTab.Controls.Add(this.btnRoundRobin);
             this.cpuSchedulerTab.Controls.Add(this.restartApp);
             this.cpuSchedulerTab.Controls.Add(this.btnPriority);
@@ -321,10 +343,11 @@
             this.cpuSchedulerTab.Controls.Add(this.txtProcess);
             this.cpuSchedulerTab.Controls.Add(this.labelProcess);
             this.cpuSchedulerTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cpuSchedulerTab.Location = new System.Drawing.Point(4, 22);
+            this.cpuSchedulerTab.Location = new System.Drawing.Point(4, 28);
+            this.cpuSchedulerTab.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cpuSchedulerTab.Name = "cpuSchedulerTab";
-            this.cpuSchedulerTab.Padding = new System.Windows.Forms.Padding(3);
-            this.cpuSchedulerTab.Size = new System.Drawing.Size(501, 413);
+            this.cpuSchedulerTab.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cpuSchedulerTab.Size = new System.Drawing.Size(671, 508);
             this.cpuSchedulerTab.TabIndex = 1;
             this.cpuSchedulerTab.Text = "CPU Scheduler";
             // 
@@ -337,9 +360,10 @@
             this.btnRoundRobin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRoundRobin.Image = ((System.Drawing.Image)(resources.GetObject("btnRoundRobin.Image")));
             this.btnRoundRobin.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRoundRobin.Location = new System.Drawing.Point(247, 278);
+            this.btnRoundRobin.Location = new System.Drawing.Point(329, 342);
+            this.btnRoundRobin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnRoundRobin.Name = "btnRoundRobin";
-            this.btnRoundRobin.Size = new System.Drawing.Size(85, 45);
+            this.btnRoundRobin.Size = new System.Drawing.Size(113, 55);
             this.btnRoundRobin.TabIndex = 12;
             this.btnRoundRobin.Text = "Round\r\nRobin";
             this.btnRoundRobin.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -353,9 +377,10 @@
             this.restartApp.Cursor = System.Windows.Forms.Cursors.Hand;
             this.restartApp.Font = new System.Drawing.Font("Segoe UI", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.restartApp.ForeColor = System.Drawing.Color.Lime;
-            this.restartApp.Location = new System.Drawing.Point(362, 379);
+            this.restartApp.Location = new System.Drawing.Point(483, 466);
+            this.restartApp.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.restartApp.Name = "restartApp";
-            this.restartApp.Size = new System.Drawing.Size(113, 15);
+            this.restartApp.Size = new System.Drawing.Size(144, 20);
             this.restartApp.TabIndex = 11;
             this.restartApp.Text = "Restart Application";
             this.restartApp.Click += new System.EventHandler(this.restartApp_Click);
@@ -369,9 +394,10 @@
             this.btnPriority.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPriority.Image = ((System.Drawing.Image)(resources.GetObject("btnPriority.Image")));
             this.btnPriority.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPriority.Location = new System.Drawing.Point(347, 278);
+            this.btnPriority.Location = new System.Drawing.Point(463, 342);
+            this.btnPriority.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnPriority.Name = "btnPriority";
-            this.btnPriority.Size = new System.Drawing.Size(107, 45);
+            this.btnPriority.Size = new System.Drawing.Size(143, 55);
             this.btnPriority.TabIndex = 10;
             this.btnPriority.Text = "PRIORITY";
             this.btnPriority.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -388,9 +414,10 @@
             this.btnSJF.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSJF.Image = ((System.Drawing.Image)(resources.GetObject("btnSJF.Image")));
             this.btnSJF.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSJF.Location = new System.Drawing.Point(115, 278);
+            this.btnSJF.Location = new System.Drawing.Point(153, 342);
+            this.btnSJF.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSJF.Name = "btnSJF";
-            this.btnSJF.Size = new System.Drawing.Size(117, 45);
+            this.btnSJF.Size = new System.Drawing.Size(156, 55);
             this.btnSJF.TabIndex = 9;
             this.btnSJF.Text = "SHORTEST JOB FIRST";
             this.btnSJF.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -407,9 +434,10 @@
             this.btnFCFS.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFCFS.Image = ((System.Drawing.Image)(resources.GetObject("btnFCFS.Image")));
             this.btnFCFS.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFCFS.Location = new System.Drawing.Point(16, 278);
+            this.btnFCFS.Location = new System.Drawing.Point(21, 342);
+            this.btnFCFS.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnFCFS.Name = "btnFCFS";
-            this.btnFCFS.Size = new System.Drawing.Size(84, 45);
+            this.btnFCFS.Size = new System.Drawing.Size(112, 55);
             this.btnFCFS.TabIndex = 8;
             this.btnFCFS.Text = "FCFS";
             this.btnFCFS.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -420,10 +448,11 @@
             // txtProcess
             // 
             this.txtProcess.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtProcess.Location = new System.Drawing.Point(205, 73);
+            this.txtProcess.Location = new System.Drawing.Point(273, 90);
+            this.txtProcess.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtProcess.Multiline = true;
             this.txtProcess.Name = "txtProcess";
-            this.txtProcess.Size = new System.Drawing.Size(249, 33);
+            this.txtProcess.Size = new System.Drawing.Size(331, 40);
             this.txtProcess.TabIndex = 7;
             this.txtProcess.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtProcess.TextChanged += new System.EventHandler(this.txtProcess_TextChanged);
@@ -431,9 +460,10 @@
             // labelProcess
             // 
             this.labelProcess.AutoSize = true;
-            this.labelProcess.Location = new System.Drawing.Point(29, 91);
+            this.labelProcess.Location = new System.Drawing.Point(39, 112);
+            this.labelProcess.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelProcess.Name = "labelProcess";
-            this.labelProcess.Size = new System.Drawing.Size(148, 15);
+            this.labelProcess.Size = new System.Drawing.Size(178, 18);
             this.labelProcess.TabIndex = 6;
             this.labelProcess.Text = "Number of Processes:";
             // 
@@ -445,9 +475,10 @@
             this.productTab.Controls.Add(this.txtCodeInput);
             this.productTab.Controls.Add(this.pictureBoxCodeOutput);
             this.productTab.Controls.Add(this.btnBarcode);
-            this.productTab.Location = new System.Drawing.Point(4, 22);
+            this.productTab.Location = new System.Drawing.Point(4, 28);
+            this.productTab.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.productTab.Name = "productTab";
-            this.productTab.Size = new System.Drawing.Size(501, 413);
+            this.productTab.Size = new System.Drawing.Size(671, 508);
             this.productTab.TabIndex = 2;
             this.productTab.Text = "Product Code ";
             // 
@@ -456,9 +487,10 @@
             this.btnSave.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnSave.BackgroundImage")));
             this.btnSave.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSave.Location = new System.Drawing.Point(434, 3);
+            this.btnSave.Location = new System.Drawing.Point(579, 4);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(44, 37);
+            this.btnSave.Size = new System.Drawing.Size(59, 46);
             this.btnSave.TabIndex = 4;
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -472,9 +504,10 @@
             this.btnQrcode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnQrcode.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnQrcode.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnQrcode.Location = new System.Drawing.Point(357, 359);
+            this.btnQrcode.Location = new System.Drawing.Point(476, 442);
+            this.btnQrcode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnQrcode.Name = "btnQrcode";
-            this.btnQrcode.Size = new System.Drawing.Size(122, 36);
+            this.btnQrcode.Size = new System.Drawing.Size(163, 44);
             this.btnQrcode.TabIndex = 3;
             this.btnQrcode.Text = "Generate Qrcode";
             this.btnQrcode.UseVisualStyleBackColor = false;
@@ -483,10 +516,11 @@
             // txtCodeInput
             // 
             this.txtCodeInput.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCodeInput.Location = new System.Drawing.Point(109, 310);
+            this.txtCodeInput.Location = new System.Drawing.Point(145, 382);
+            this.txtCodeInput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtCodeInput.Multiline = true;
             this.txtCodeInput.Name = "txtCodeInput";
-            this.txtCodeInput.Size = new System.Drawing.Size(369, 28);
+            this.txtCodeInput.Size = new System.Drawing.Size(491, 34);
             this.txtCodeInput.TabIndex = 2;
             this.txtCodeInput.Text = "Enter text to be generated as code";
             this.txtCodeInput.Click += new System.EventHandler(this.txtCodeInput_Click);
@@ -494,9 +528,10 @@
             // pictureBoxCodeOutput
             // 
             this.pictureBoxCodeOutput.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBoxCodeOutput.Location = new System.Drawing.Point(25, 46);
+            this.pictureBoxCodeOutput.Location = new System.Drawing.Point(33, 57);
+            this.pictureBoxCodeOutput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBoxCodeOutput.Name = "pictureBoxCodeOutput";
-            this.pictureBoxCodeOutput.Size = new System.Drawing.Size(453, 231);
+            this.pictureBoxCodeOutput.Size = new System.Drawing.Size(604, 284);
             this.pictureBoxCodeOutput.TabIndex = 1;
             this.pictureBoxCodeOutput.TabStop = false;
             // 
@@ -509,9 +544,10 @@
             this.btnBarcode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBarcode.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBarcode.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnBarcode.Location = new System.Drawing.Point(189, 359);
+            this.btnBarcode.Location = new System.Drawing.Point(252, 442);
+            this.btnBarcode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnBarcode.Name = "btnBarcode";
-            this.btnBarcode.Size = new System.Drawing.Size(133, 36);
+            this.btnBarcode.Size = new System.Drawing.Size(177, 44);
             this.btnBarcode.TabIndex = 0;
             this.btnBarcode.Text = "Generate Barcode";
             this.btnBarcode.UseVisualStyleBackColor = false;
@@ -521,15 +557,55 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // btnSRTF
+            // 
+            this.btnSRTF.BackColor = System.Drawing.Color.Beige;
+            this.btnSRTF.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSRTF.FlatAppearance.MouseOverBackColor = System.Drawing.Color.PaleGreen;
+            this.btnSRTF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSRTF.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSRTF.Image = ((System.Drawing.Image)(resources.GetObject("btnSRTF.Image")));
+            this.btnSRTF.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSRTF.Location = new System.Drawing.Point(21, 261);
+            this.btnSRTF.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSRTF.Name = "btnSRTF";
+            this.btnSRTF.Size = new System.Drawing.Size(112, 55);
+            this.btnSRTF.TabIndex = 13;
+            this.btnSRTF.Text = "SRTF";
+            this.btnSRTF.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSRTF.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSRTF.UseVisualStyleBackColor = false;
+            this.btnSRTF.Click += new System.EventHandler(this.btnSRTF_Click);
+            // 
+            // btnHRRN
+            // 
+            this.btnHRRN.BackColor = System.Drawing.Color.PapayaWhip;
+            this.btnHRRN.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnHRRN.FlatAppearance.MouseOverBackColor = System.Drawing.Color.PaleGreen;
+            this.btnHRRN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHRRN.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHRRN.Image = ((System.Drawing.Image)(resources.GetObject("btnHRRN.Image")));
+            this.btnHRRN.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnHRRN.Location = new System.Drawing.Point(487, 251);
+            this.btnHRRN.Margin = new System.Windows.Forms.Padding(4);
+            this.btnHRRN.Name = "btnHRRN";
+            this.btnHRRN.Size = new System.Drawing.Size(113, 55);
+            this.btnHRRN.TabIndex = 14;
+            this.btnHRRN.Text = "HRRN";
+            this.btnHRRN.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnHRRN.UseVisualStyleBackColor = false;
+            this.btnHRRN.Click += new System.EventHandler(this.btnHRRN_Click);
+            // 
             // CpuScheduler
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(681, 439);
+            this.ClientSize = new System.Drawing.Size(908, 540);
             this.Controls.Add(this.tabSelection);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "CpuScheduler";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -587,5 +663,7 @@
         private System.Windows.Forms.Button btnRoundRobin;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button btnSRTF;
+        private System.Windows.Forms.Button btnHRRN;
     }
 }

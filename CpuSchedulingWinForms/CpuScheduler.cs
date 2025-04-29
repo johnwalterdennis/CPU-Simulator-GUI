@@ -342,6 +342,99 @@ namespace CpuSchedulingWinForms
                 txtProcess.Focus();
             }
         }
+        // ────────────────────────────────────────────────────────────────
+        //  SRTF  – Shortest Remaining Time First (pre-emptive SJF)
+        // ────────────────────────────────────────────────────────────────
+        private void btnSRTF_Click(object sender, EventArgs e)
+        {
+            if (txtProcess.Text == "")
+            {
+                MessageBox.Show("Enter number of processes", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtProcess.Focus();
+                return;
+            }
+
+            Algorithms.srtfAlgorithm(txtProcess.Text);
+
+            int numberOfProcess = Int16.Parse(txtProcess.Text);
+            if (numberOfProcess <= 10)
+            {
+                progressBar1.Increment(4);
+                progressBar1.SetState(1);
+                progressBar2.Increment(13);
+                progressBar2.SetState(1);
+            }
+            else
+            {
+                progressBar1.Increment(15);
+                progressBar1.SetState(1);
+                progressBar2.Increment(38);
+                progressBar2.SetState(3);
+            }
+
+            listView1.Clear();
+            listView1.View = View.Details;
+            listView1.Columns.Add("Process ID", 150, HorizontalAlignment.Center);
+            listView1.Columns.Add("Quantum Time", 100, HorizontalAlignment.Center);
+
+            for (int i = 0; i < numberOfProcess; i++)
+            {
+                var item = new ListViewItem();
+                item.Text = "Process " + (i + 1);
+                item.SubItems.Add("-");          // no quantum in SRTF
+                listView1.Items.Add(item);
+            }
+            listView1.Items.Add("\n");
+            listView1.Items.Add("CPU handles: " + numberOfProcess);
+        }
+
+
+        // ────────────────────────────────────────────────────────────────
+        //  HRRN – Highest Response-Ratio Next
+        // ────────────────────────────────────────────────────────────────
+        private void btnHRRN_Click(object sender, EventArgs e)
+        {
+            if (txtProcess.Text == "")
+            {
+                MessageBox.Show("Enter number of processes", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtProcess.Focus();
+                return;
+            }
+
+            Algorithms.hrrnAlgorithm(txtProcess.Text);
+
+            int numberOfProcess = Int16.Parse(txtProcess.Text);
+            if (numberOfProcess <= 10)
+            {
+                progressBar1.Increment(4);
+                progressBar1.SetState(1);
+                progressBar2.Increment(13);
+                progressBar2.SetState(1);
+            }
+            else
+            {
+                progressBar1.Increment(15);
+                progressBar1.SetState(1);
+                progressBar2.Increment(38);
+                progressBar2.SetState(3);
+            }
+
+            listView1.Clear();
+            listView1.View = View.Details;
+            listView1.Columns.Add("Process ID", 150, HorizontalAlignment.Center);
+            listView1.Columns.Add("Quantum Time", 100, HorizontalAlignment.Center);
+
+            for (int i = 0; i < numberOfProcess; i++)
+            {
+                var item = new ListViewItem();
+                item.Text = "Process " + (i + 1);
+                item.SubItems.Add("-");          // HRRN is non-pre-emptive, no quantum
+                listView1.Items.Add(item);
+            }
+            listView1.Items.Add("\n");
+            listView1.Items.Add("CPU handles: " + numberOfProcess);
+        }
+
 
         private void timer1_Tick(object sender, EventArgs e)
         {

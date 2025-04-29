@@ -19,3 +19,24 @@ C:\Users\nweke\Documents\Visual Studio 2017\Projects\CpuSchedulingWinForms\CpuSc
 C:\Users\nweke\Documents\Visual Studio 2017\Projects\CpuSchedulingWinForms\CpuSchedulingWinForms\bin\Release\zxing.presentation.pdb
 C:\Users\nweke\Documents\Visual Studio 2017\Projects\CpuSchedulingWinForms\CpuSchedulingWinForms\bin\Release\zxing.presentation.xml
 C:\Users\nweke\Documents\Visual Studio 2017\Projects\CpuSchedulingWinForms\CpuSchedulingWinForms\obj\Release\CpuSchedulingWinForms.csproj.CopyComplete
+C:\Users\brynw\.vscode\Cpuscheduler2\CPU-Simulator-GUI\CpuSchedulingWinForms\bin\Release\CpuSchedulingWinForms.exe.config
+C:\Users\brynw\.vscode\Cpuscheduler2\CPU-Simulator-GUI\CpuSchedulingWinForms\bin\Release\CpuSchedulingWinForms.exe
+C:\Users\brynw\.vscode\Cpuscheduler2\CPU-Simulator-GUI\CpuSchedulingWinForms\bin\Release\CpuSchedulingWinForms.pdb
+C:\Users\brynw\.vscode\Cpuscheduler2\CPU-Simulator-GUI\CpuSchedulingWinForms\bin\Release\AForge.dll
+C:\Users\brynw\.vscode\Cpuscheduler2\CPU-Simulator-GUI\CpuSchedulingWinForms\bin\Release\Zen.Barcode.Core.dll
+C:\Users\brynw\.vscode\Cpuscheduler2\CPU-Simulator-GUI\CpuSchedulingWinForms\bin\Release\zxing.dll
+C:\Users\brynw\.vscode\Cpuscheduler2\CPU-Simulator-GUI\CpuSchedulingWinForms\bin\Release\zxing.presentation.dll
+C:\Users\brynw\.vscode\Cpuscheduler2\CPU-Simulator-GUI\CpuSchedulingWinForms\bin\Release\AForge.xml
+C:\Users\brynw\.vscode\Cpuscheduler2\CPU-Simulator-GUI\CpuSchedulingWinForms\bin\Release\zxing.pdb
+C:\Users\brynw\.vscode\Cpuscheduler2\CPU-Simulator-GUI\CpuSchedulingWinForms\bin\Release\zxing.xml
+C:\Users\brynw\.vscode\Cpuscheduler2\CPU-Simulator-GUI\CpuSchedulingWinForms\bin\Release\zxing.presentation.pdb
+C:\Users\brynw\.vscode\Cpuscheduler2\CPU-Simulator-GUI\CpuSchedulingWinForms\bin\Release\zxing.presentation.xml
+C:\Users\brynw\.vscode\Cpuscheduler2\CPU-Simulator-GUI\CpuSchedulingWinForms\obj\Release\CpuSchedulingWinForms.csproj.AssemblyReference.cache
+C:\Users\brynw\.vscode\Cpuscheduler2\CPU-Simulator-GUI\CpuSchedulingWinForms\obj\Release\CpuSchedulingWinForms.CpuScheduler.resources
+C:\Users\brynw\.vscode\Cpuscheduler2\CPU-Simulator-GUI\CpuSchedulingWinForms\obj\Release\CpuSchedulingWinForms.Form1.resources
+C:\Users\brynw\.vscode\Cpuscheduler2\CPU-Simulator-GUI\CpuSchedulingWinForms\obj\Release\CpuSchedulingWinForms.Properties.Resources.resources
+C:\Users\brynw\.vscode\Cpuscheduler2\CPU-Simulator-GUI\CpuSchedulingWinForms\obj\Release\CpuSchedulingWinForms.csproj.GenerateResource.cache
+C:\Users\brynw\.vscode\Cpuscheduler2\CPU-Simulator-GUI\CpuSchedulingWinForms\obj\Release\CpuSchedulingWinForms.csproj.CoreCompileInputs.cache
+C:\Users\brynw\.vscode\Cpuscheduler2\CPU-Simulator-GUI\CpuSchedulingWinForms\obj\Release\CpuSched.BA2933A9.Up2Date
+C:\Users\brynw\.vscode\Cpuscheduler2\CPU-Simulator-GUI\CpuSchedulingWinForms\obj\Release\CpuSchedulingWinForms.exe
+C:\Users\brynw\.vscode\Cpuscheduler2\CPU-Simulator-GUI\CpuSchedulingWinForms\obj\Release\CpuSchedulingWinForms.pdb
