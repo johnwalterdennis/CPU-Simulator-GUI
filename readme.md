@@ -1,12 +1,10 @@
-## CPU-Simulator GUI
-A grahical user interface application with these components: CPU Simulator, QR code and Barcode Generator.
+# CPU-Simulator GUI
+This repository is a fork of an original repository by Francis Nweke
+It contains A grahical user interface application with these components: CPU Simulator, QR code and Barcode Generator.
 
+# Usage
+To run this code you must install Visual studio 2022 as well as the [.NET v4.8](https://learn.microsoft.com/en-us/dotnet/core/install/windows) (not higher) SDK. You must also have a windows machine for the GUI to run
 
-## Usage
+[You must also install C#](https://code.visualstudio.com/docs/languages/csharp)
 
-```
-Please install the font: "IDAutomationHC39M Free Version". You can find it in the project root folder.
-```
-
-## License
 This project is licensed under the terms of the [MIT license](https://choosealicense.com/licenses/mit/).
