@@ -1,6 +1,8 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
-authors:"Francis Nweke"
+authors
+- family-names: "Nweke"
+  given-names: "Francis"
 title: "CPU-Simulator-GUI"
 version: 1.0.0
 doi: 10.5281/zenodo.1234
